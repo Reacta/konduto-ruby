@@ -32,7 +32,9 @@ class KondutoBase
           value = value.map {|v| v.to_hash }
         elsif !value.instance_variables.empty?
           value = value.to_hash
-        elsif value.is_a?(Date) || value.is_a?(Symbol)
+        elsif value.is_a?(DateTime)
+          value = value.try(:strftime, '%Y-%m-%dT%H:%M:%SZ')
+        elsif value.is_a?(Symbol)
           value = value.to_s
         end
 
