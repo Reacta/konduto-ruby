@@ -1,5 +1,7 @@
 require 'json'
 require 'konduto-ruby/konduto_base'
+require 'konduto-ruby/konduto_travel_leg'
+
 Dir[__dir__ + '/konduto-ruby/*.rb'].each { |file| require file }
 
 class KondutoRuby

@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name         = 'konduto-ruby'
-  spec.version      = '1.0.4.1'
+  spec.version      = '1.0.4.2'
   spec.authors      = ['Gabriel Custodio', 'Jonathan Cardoso de Campos']
   spec.email        = [%(gcmartins93@gmail.com jonathancardosodecampos@gmail.com)]
   spec.homepage     = 'https://github.com/jonathan0211/konduto-ruby'
