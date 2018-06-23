@@ -1,8 +1,8 @@
 require 'minitest/autorun'
-require 'factory_girl'
+require 'factory_bot'
 
 class TestKondutoSeller < Minitest::Test
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
   
   def test_serialization
     seller = build(:konduto_seller)

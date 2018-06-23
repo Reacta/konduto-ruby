@@ -1,9 +1,9 @@
 
 require 'minitest/autorun'
-require 'factory_girl'
+require 'factory_bot'
 
 class KondutoDeviceTest < MiniTest::Test
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
 
   def test_serialization
     device = build(:konduto_device)

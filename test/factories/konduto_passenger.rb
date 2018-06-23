@@ -1,10 +1,10 @@
 require 'date'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_passenger do
     frequent_traveler false
-    sequence(:name) { |n| "Milton Tavares #{n}" }
-    sequence(:document) { |n| "A1B2C3D#{n}" }
+    sequence(:name) { |n| "Milton Tavares" }
+    sequence(:document) { |n| "A1B2C3D" }
     document_type :passport
     special_needs false
 

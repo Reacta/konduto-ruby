@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_seller do
     id 'seller_id'
     name 'Seller Name'

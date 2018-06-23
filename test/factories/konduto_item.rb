@@ -1,6 +1,6 @@
 require 'date'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_item do
     trait :green_shirt do
       sku '9919023'

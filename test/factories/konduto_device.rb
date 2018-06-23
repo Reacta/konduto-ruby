@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_device do
     browser 'Chrome'
     cookie true

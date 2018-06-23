@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_navigation do
     session_time 12
     referrer 'http://www.google.com?q=buy+shirt'

@@ -1,6 +1,6 @@
 require 'date'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_order do
     id "1"
     total_amount 120.5

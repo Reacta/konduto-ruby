@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_loyalty do
     program 'advantage'
     category 'gold'

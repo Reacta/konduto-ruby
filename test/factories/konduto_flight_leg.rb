@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_flight_leg do
     trait :departure_flight do
       origin_airport 'CGH'

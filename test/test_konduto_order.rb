@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'factory_girl'
+require 'factory_bot'
 require 'konduto-ruby'
 
 class KondutoOrderTest < MiniTest::Test
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
 
   def test_valid
     order = KondutoOrder.new

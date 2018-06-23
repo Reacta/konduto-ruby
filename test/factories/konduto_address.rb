@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_address do
     name 'Konduto'
     address1 'R. Teodoro Sampaio, 2393'

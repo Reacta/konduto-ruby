@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_geolocation do
     city 'São Paulo'
     state 'SP'

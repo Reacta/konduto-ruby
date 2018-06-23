@@ -7,7 +7,7 @@ class TestKondutoFlightLeg < Minitest::Test
     @params = {
       origin_airport: 'CGH',
       destination_airport: 'SDU',
-      date: "2015-05-07",
+      date: "2018-12-25T18:00Z",
       fare_basis: 'Y',
       number_of_connections: 1,
       class: 'economy'

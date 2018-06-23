@@ -1,6 +1,6 @@
 ## Hey there,
 
-This document is a rubyist adaptation of the original README file made for the Java API version. You can get access to it by clicking  [here](https://github.com/konduto/java-sdk/blob/master/README.md). **Konduto is a trademark, all rights reserved**. This project has no intention beyond helping ruby users to get easy access to Konduto's API through a simplified interface.
+This document is a rubyist adaptation of the original README file made for the Java API version. You can get access to it by clicking [here](https://github.com/konduto/java-sdk/blob/master/README.md). **Konduto is a trademark, all rights reserved**. This project has no intention beyond helping ruby users to get easy access to Konduto's API through a simplified interface.
 
 ## Intro
 
@@ -10,9 +10,13 @@ Our service uses the visitor's behavior to analyze browsing patterns and detect 
 
 This document refers to the **Ruby SDK** used for our API.
 
+## Migration from 1.0 to 2.0
+
+NavigationInfo class is now Navigation and validation methods are now scopped by Konduto module.
+
 ## Requirements
 
-* This API was tested with Ruby MRI version 2.
+- This API was tested with Ruby MRI version 2.
 
 ## Installation
 
@@ -29,7 +33,6 @@ After that, run **bundle install**. If your are not using a Gemfile, run the fol
 When a customer makes a purchase you must send the order information to us so we can analyze it. We perform a real-time analysis and return you a **recommendation** of what to do next and a score, a numeric confidence level about that order.
 
 While many of the parameters we accept are optional we recommend you send all you can, because every data point matters for the analysis. The **billing address** and **credit card information** are specially important, though we understand there are cases where you don't have that information.
-
 
 ## Set your API key
 
@@ -53,7 +56,8 @@ order = KondutoOrder.new({
           totalAmount: 123.4,
           customer: customer # customer is an instance of KondutoCustomer
         })
-```		
+```
+
 One can also use the more conventional set-based approach as seen below.
 
 ```ruby
@@ -63,105 +67,98 @@ order.total_amount = 123.4
 order.customer = customer
 ```
 
->
-**NOTICE**: the order created above is really, really simple. The more detail you provide, more accurate Konduto's analysis will be.
->
+> **NOTICE**: the order created above is really, really simple. The more detail you provide, more accurate Konduto's analysis will be.
 
 ### Order parameters
 
-Parameter | Description
---- | ---
-id | _(required)_ Unique identifier for each order.
-visitor | _(required)_ Visitor identifier obtained from our JavaScript snippet.
-total_amount | _(required)_ Total order amount.
-shipping_amount | _(optional)_ Shipping and handling amount.
-tax_amount | _(optional)_ Taxes amount.
-currency | _(optional)_ Currency code with 3 letters (ISO-4712).
-installments | _(optional)_ Number of installments in the payment plan.
-ip | _(optional)_ Customer's IPv4 address.
-customer | _(required)_ Object containing the customer details.
-payment | _(optional)_ Array containing the payment methods.
-billing | _(optional)_ Object containing the billing information.
-shipping | _(optional)_ Object containing the shipping information.
-shopping_cart | _(optional)_ Array containing the items purchased.
-analyze | _(optional)_ A boolean indicating if the order should be analyzed. Defaults to **true**.
-first_message | _(optional)_ Time when the first message was exchanged between customer and seller.
-messages_exchanged | _(optional)_ Number of messages exchanged between customer and seller.
-purchased_at | _(optional)_ Time when the customer purchased from the seller.
+| Parameter          | Description                                                                              |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| id                 | _(required)_ Unique identifier for each order.                                           |
+| visitor            | _(required)_ Visitor identifier obtained from our JavaScript snippet.                    |
+| total_amount       | _(required)_ Total order amount.                                                         |
+| shipping_amount    | _(optional)_ Shipping and handling amount.                                               |
+| tax_amount         | _(optional)_ Taxes amount.                                                               |
+| currency           | _(optional)_ Currency code with 3 letters (ISO-4712).                                    |
+| installments       | _(optional)_ Number of installments in the payment plan.                                 |
+| ip                 | _(optional)_ Customer's IPv4 address.                                                    |
+| customer           | _(required)_ Object containing the customer details.                                     |
+| payment            | _(optional)_ Array containing the payment methods.                                       |
+| billing            | _(optional)_ Object containing the billing information.                                  |
+| shipping           | _(optional)_ Object containing the shipping information.                                 |
+| shopping_cart      | _(optional)_ Array containing the items purchased.                                       |
+| analyze            | _(optional)_ A boolean indicating if the order should be analyzed. Defaults to **true**. |
+| first_message      | _(optional)_ Time when the first message was exchanged between customer and seller.      |
+| messages_exchanged | _(optional)_ Number of messages exchanged between customer and seller.                   |
+| purchased_at       | _(optional)_ Time when the customer purchased from the seller.                           |
 
 #### Customer information
 
-Parameter | Description
---- | ---
-id | _(required)_ **Unique** identifier for each customer. Can be anything you like (counter, id, e-mail address) as long as it's consistent in future orders.
-name | _(required)_ Customer's full name.
-email | _(required)_ Customer's e-mail address
-tax_id | _(optional)_ Customer's tax id.
-phone1 | _(optional)_ Customer's primary phone number
-phone 2 | _(optional)_ Customer's secondary phone number
-new | _(optional)_ Boolean indicating if the customer is using a newly created account for this purchase.
-vip | _(optional)_ Boolean indicating if the customer is a VIP or frequent buyer.
-created_at | _(optional)_ Date when customer was created.
-
+| Parameter  | Description                                                                                                                                               |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id         | _(required)_ **Unique** identifier for each customer. Can be anything you like (counter, id, e-mail address) as long as it's consistent in future orders. |
+| name       | _(required)_ Customer's full name.                                                                                                                        |
+| email      | _(required)_ Customer's e-mail address                                                                                                                    |
+| tax_id     | _(optional)_ Customer's tax id.                                                                                                                           |
+| phone1     | _(optional)_ Customer's primary phone number                                                                                                              |
+| phone 2    | _(optional)_ Customer's secondary phone number                                                                                                            |
+| new        | _(optional)_ Boolean indicating if the customer is using a newly created account for this purchase.                                                       |
+| vip        | _(optional)_ Boolean indicating if the customer is a VIP or frequent buyer.                                                                               |
+| created_at | _(optional)_ Date when customer was created.                                                                                                              |
 
 #### Payment information
 
-Parameter | Description
---- | ---
-status | _(required)_ The status of the transaction returned by the payment processor. Accepts `approved`, `declined` or `pending` if the payment wasn't been processed yet.
-bin | _(optional)_ First six digits of the customer's credit card. Used to identify the type of card being sent.
-last4 | _(optional)_ Four last digits of the customer's credit card number.
-expiration_date | _(optional)_ Card's expiration date under MMYYYY format.
-
+| Parameter       | Description                                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status          | _(required)_ The status of the transaction returned by the payment processor. Accepts `approved`, `declined` or `pending` if the payment wasn't been processed yet. |
+| bin             | _(optional)_ First six digits of the customer's credit card. Used to identify the type of card being sent.                                                          |
+| last4           | _(optional)_ Four last digits of the customer's credit card number.                                                                                                 |
+| expiration_date | _(optional)_ Card's expiration date under MMYYYY format.                                                                                                            |
 
 #### Billing address
 
-Parameter | Description
---- | ---
-name | _(optional)_ Cardholder's full name.
-address1 | _(optional)_ Cardholder's billing address on file with the bank.
-address2 | _(optional)_ Additional cardholder address information.
-city | _(optional)_ Cardholder's city.
-state | _(optional)_ Cardholder's state.
-zip | _(optional)_ Cardholder's ZIP code.
-country | _(optional)_ Cardholder's country code (ISO 3166-2)
-
+| Parameter | Description                                                      |
+| --------- | ---------------------------------------------------------------- |
+| name      | _(optional)_ Cardholder's full name.                             |
+| address1  | _(optional)_ Cardholder's billing address on file with the bank. |
+| address2  | _(optional)_ Additional cardholder address information.          |
+| city      | _(optional)_ Cardholder's city.                                  |
+| state     | _(optional)_ Cardholder's state.                                 |
+| zip       | _(optional)_ Cardholder's ZIP code.                              |
+| country   | _(optional)_ Cardholder's country code (ISO 3166-2)              |
 
 #### Shipping address
 
-Parameter | Description
---- | ---
-name | _(optional)_ Recipient's full name.
-address1 | _(optional)_ Recipient's shipping address.
-address2 | _(optional)_ Additional recipient address information.
-city | _(optional)_ Recipient's city.
-state | _(optional)_ Recipient's state.
-zip | _(optional)_ Recipient's ZIP code.
-country | _(optional)_ Recipient's country code (ISO 3166-2)
-
+| Parameter | Description                                            |
+| --------- | ------------------------------------------------------ |
+| name      | _(optional)_ Recipient's full name.                    |
+| address1  | _(optional)_ Recipient's shipping address.             |
+| address2  | _(optional)_ Additional recipient address information. |
+| city      | _(optional)_ Recipient's city.                         |
+| state     | _(optional)_ Recipient's state.                        |
+| zip       | _(optional)_ Recipient's ZIP code.                     |
+| country   | _(optional)_ Recipient's country code (ISO 3166-2)     |
 
 #### Shopping cart
 
-Parameter | Description
---- | ---
-sku | _(optional)_ Product or service's SKU or inventory id.
-product_code | _(optional)_ Product or service's UPC, barcode or secondary id.
-category | _(optional)_ Category code for the item purchased. [See here](http://docs.konduto.com/#n-tables) for the list.
-name | _(optional)_ Name of the product or service.
-description | _(optional)_ Detailed description of the item.
-unit_cost | _(optional)_ Cost of a single unit of this item.
-quantity | _(optional)_ Number of units purchased.
-discount | _(optional)_ Discounted amount for this item.
-created_at | _(optional)_ Date when this item was created.
+| Parameter    | Description                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------------- |
+| sku          | _(optional)_ Product or service's SKU or inventory id.                                                         |
+| product_code | _(optional)_ Product or service's UPC, barcode or secondary id.                                                |
+| category     | _(optional)_ Category code for the item purchased. [See here](http://docs.konduto.com/#n-tables) for the list. |
+| name         | _(optional)_ Name of the product or service.                                                                   |
+| description  | _(optional)_ Detailed description of the item.                                                                 |
+| unit_cost    | _(optional)_ Cost of a single unit of this item.                                                               |
+| quantity     | _(optional)_ Number of units purchased.                                                                        |
+| discount     | _(optional)_ Discounted amount for this item.                                                                  |
+| created_at   | _(optional)_ Date when this item was created.                                                                  |
 
 ### Seller
 
-Parameter | Description
---- | ---
-id | _(required)_ Seller's id
-name | _(optional)_ Sellers's name
-created_at | _(optional)_ Date when the seller was created
-
+| Parameter  | Description                                   |
+| ---------- | --------------------------------------------- |
+| id         | _(required)_ Seller's id                      |
+| name       | _(optional)_ Sellers's name                   |
+| created_at | _(optional)_ Date when the seller was created |
 
 ## Sending an order for analysis.
 
@@ -205,12 +202,13 @@ order = konduto.get_order order_id # orderId is a String
 konduto.update_order_status(order, new_status, 'some comments');
 ```
 
-Parameter | Description
---- | ---
-status | _(required)_ New status for this transaction. Either `approved`, `declined` or `fraud`, when you have identified a fraud or chargeback.
-comments | _(required)_ Reason or comments about the status update.
+| Parameter | Description                                                                                                                             |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| status    | _(required)_ New status for this transaction. Either `approved`, `declined` or `fraud`, when you have identified a fraud or chargeback. |
+| comments  | _(required)_ Reason or comments about the status update.                                                                                |
 
 ## Sending requests through a proxy
+
 To send requests through a proxy just build a new Konduto instance and set the proxy host passing the proxy url as parameters of `proxy=` method. If the proxy requires username and password, just set then at the proxy url you'll pass to `proxy=` method.
 
 ```ruby

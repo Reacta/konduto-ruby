@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_payment do
     trait :credit_card do
       bin '123'

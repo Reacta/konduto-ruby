@@ -1,6 +1,6 @@
 require 'date'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :konduto_customer do
     id '1'
     name 'José da Silva'
